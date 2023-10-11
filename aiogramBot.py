@@ -20,11 +20,21 @@ dp = Dispatcher()
 # обрабатываем команду старт
 @dp.message(Command('start'))
 async def cmd_start(message: types.Message):
+    image_from_pc = FSInputFile('hello.webp')
+    await message.answer_photo(image_from_pc, caption='Пообщаемся?)')
+    await asyncio.sleep(2)
     await message.answer("Рад тебя видеть!")
 
 
+@dp.message(Command('image'))
+async def upload_photo(message: types.Message):
+    image_from_pc = FSInputFile('hello.webp')
+    await message.answer_photo(image_from_pc, caption='Пообщаемся?)')
 
-
+# ping pong 
+@dp.message()
+async def echo(message: types.Message):
+    await message.answer('бот Сергея услышал: ' + message.text)
 
 
 
